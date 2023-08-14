@@ -2,64 +2,138 @@ import { calculate } from './calculator.js';
 
 // TODO: Faire la manipulation du DOM dans ce fichier
 
-const test = document.querySelector("#calcul");
-const mybtn1 = document.querySelector("#numpad1");
-const btnClear = document.querySelector("#reset");
-const mybtn2 = document.querySelector("#numpad2");
-const mybtn3 = document.querySelector("#numpad3");
-const mybtn4 = document.querySelector("#numpad4");
-const mybtn5 = document.querySelector("#numpad5");
-const mybtn6 = document.querySelector("#numpad6");
-const mybtn7 = document.querySelector("#numpad7");
-const mybtn8 = document.querySelector("#numpad8");
-const mybtn9 = document.querySelector("#numpad9");
-const mybtn0 = document.querySelector("#numpad0");
-const mybtnPoint = document.querySelector("#numpadPoint");
+const mybtn = document.querySelectorAll(".numpad");
+const myInput = document.querySelector("#input");
+const btnAdition = document.querySelector("#plus");
+let restultat = "";
+
+
+
+
+  function addNumber0(){
+    restultat += "7";
+    viewResultat();
+  };
+  function addNumber1(){
+    restultat += "8";
+    viewResultat();
+  };
+  function addNumber2(){
+    restultat += "9";
+    viewResultat();
+  };
+  function addNumber3(){
+    restultat += "4";
+    viewResultat();
+  };
+  function addNumber4(){
+    restultat += "5";
+    viewResultat();
+  };
+  function addNumber5(){
+    restultat += "6";
+    viewResultat();
+  };
+  function addNumber6(){
+    restultat += "1";
+    viewResultat();
+  };
+  function addNumber7(){
+    restultat += "2";
+    viewResultat();
+  };
+  function addNumber8(){
+    restultat += "3";
+    viewResultat();
+  };
+  function addNumber9(){
+    restultat += ".";
+    viewResultat();
+  };
+  function addNumber10(){
+    restultat += "0";
+    viewResultat();
+  };
+
+  function clickBtbn(btn){
+    if(btn === mybtn[0]){
+        btn.addEventListener('click', addNumber0);
+    }else if(btn === mybtn[1]){
+        btn.addEventListener('click', addNumber1);
+    }else if(btn === mybtn[2]){
+        btn.addEventListener('click', addNumber2);
+    }else if(btn === mybtn[3]){
+        btn.addEventListener('click', addNumber3);
+    }else if(btn === mybtn[4]){
+        btn.addEventListener('click', addNumber4);
+    }else if(btn === mybtn[5]){
+        btn.addEventListener('click', addNumber5);
+    }else if(btn === mybtn[6]){
+        btn.addEventListener('click', addNumber6);
+    }else if(btn === mybtn[7]){
+        btn.addEventListener('click', addNumber7);
+    }else if(btn === mybtn[8]){
+        btn.addEventListener('click', addNumber8);
+    }else if(btn === mybtn[9]){
+        btn.addEventListener('click', addNumber9);
+    }else if(btn === mybtn[10]){
+        btn.addEventListener('click', addNumber10);
+    }else{
+        console.log("Eror");
+    }
+   
+  };
+
+  function viewResultat(){
+    const conversionTonumber = eval(restultat);
+    myInput.value = conversionTonumber;
+  };
+
+  function calcul(operation){
+    const lastCaractere = restultat[restultat.length - 1];
+  
+  if (lastCaractere === '+' || lastCaractere === '-' || lastCaractere === '*' || lastCaractere === '/') {
+    restultat = restultat.slice(0, -1);
+  }
+  
+  restultat += operation;
+  operAdition();
+  viewResultat();
+  };
+
+  function operAdition(e){
+    restultat += "+";
+    myInput.value='';
+    e.preventDefault();
+  };
+  btnAdition.addEventListener('click', operAdition, calcul);
+
+  mybtn.forEach(clickBtbn);
+
+
+  
+
+  
+
+  
+ 
+
+  
+   
+ 
 
 
 
 
 
-const inputview = document.querySelector("#input");
 
-function clear(){
-    test.innerHTML = " ";
-}
- mybtn1.addEventListener('click', function(){
-    inputview.value += "1";
-});
-mybtn2.addEventListener('click', function(){
-    inputview.value += "2";
-})
-mybtn3.addEventListener('click', function(){
-    inputview.value += "3";
-});
-mybtn4.addEventListener('click', function(){
-    inputview.value += "4";
-})
-mybtn5.addEventListener('click', function(){
-    inputview.value += "5";
-});
-mybtn6.addEventListener('click', function(){
-    inputview.value += "6";
-})
-mybtn7.addEventListener('click', function(){
-    inputview.value += "7";
-});
-mybtn8.addEventListener('click', function(){
-    inputview.value += "8";
-})
-mybtn9.addEventListener('click', function(){
-    inputview.value += "9";
-});
-mybtn0.addEventListener('click', function(){
-    inputview.value += "0";
-});
-mybtnPoint.addEventListener('click', function(){
-    inputview.value += ".";
-});
 
-btnClear.addEventListener('click', clear );
+
+
+
+
+
+
 
 
 
