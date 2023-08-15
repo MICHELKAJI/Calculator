@@ -5,14 +5,21 @@ import { calculate } from './calculator.js';
 const mybtn = document.querySelectorAll(".numpad");
 const myInput = document.querySelector("#input");
 const btnAdition = document.querySelector("#plus");
+const vieuwCacul = document.querySelector("#calcul");
+const elgality = document.querySelector("#equals");
+const soustraction = document.querySelector("#minus");
+const multiplication = document.querySelector("#times");
+const divisition = document.querySelector("#divideby");
+const btnReset = document.querySelector("#reset");
+const btnSing = document.querySelector(".secondary");
 let restultat = "";
 
 
 
-
-  function addNumber0(){
+  function addNumber0(e){
     restultat += "7";
     viewResultat();
+    e.preventDefault();
   };
   function addNumber1(){
     restultat += "8";
@@ -81,34 +88,88 @@ let restultat = "";
     }else{
         console.log("Eror");
     }
-   
   };
 
   function viewResultat(){
-    const conversionTonumber = eval(restultat);
+    const conversionTonumber = restultat;
     myInput.value = conversionTonumber;
   };
 
-  function calcul(operation){
-    const lastCaractere = restultat[restultat.length - 1];
+  // function calcul(operation){
+  //   const lastCaractere = restultat[restultat.length - 1];
   
-  if (lastCaractere === '+' || lastCaractere === '-' || lastCaractere === '*' || lastCaractere === '/') {
-    restultat = restultat.slice(0, -1);
-  }
+  // if (lastCaractere === '+' || lastCaractere === '-' || lastCaractere === '*' || lastCaractere === '/') {
+  //   restultat = restultat.slice(0, -1);
+  // }
   
-  restultat += operation;
-  operAdition();
-  viewResultat();
-  };
+  // restultat += operation;
+  // viewResultat();
+  // };
 
   function operAdition(e){
     restultat += "+";
+    vieuwCacul.innerHTML = "+";
     myInput.value='';
+    const conversionTonumber = restultat;
+    vieuwCacul.innerHTML = conversionTonumber;
     e.preventDefault();
   };
-  btnAdition.addEventListener('click', operAdition, calcul);
+
+    function operSoustraction(e){
+      restultat += "-";
+      vieuwCacul.innerHTML = "-";
+      myInput.value='';
+      const conversionTonumber = restultat;
+      vieuwCacul.innerHTML = conversionTonumber;
+      e.preventDefault();
+    };
+  
+  function equalis(e){
+    const valueInput = eval(restultat);
+    myInput.value = valueInput;
+    vieuwCacul.innerHTML = restultat + "=";
+    e.preventDefault();
+  };
+
+  function operationMulti(e){
+    restultat += "*";
+      vieuwCacul.innerHTML = "x";
+      myInput.value='';
+      const conversionTonumber = restultat;
+      vieuwCacul.innerHTML = conversionTonumber;
+      e.preventDefault();
+  };
+  function operationDivision(e){
+    restultat += "/";
+    vieuwCacul.innerHTML = "/";
+    myInput.value='';
+    const conversionTonumber = restultat;
+    vieuwCacul.innerHTML = conversionTonumber;
+    e.preventDefault();
+  };
+  function plusOrsoustaction(e){
+    restultat += "-";
+    vieuwCacul.innerHTML = "-";
+    myInput.value='';
+    const conversionTonumber = restultat;
+    vieuwCacul.innerHTML = conversionTonumber;
+    e.preventDefault();
+  }
+  function clearing(e){
+    location.reload();
+  };
+  
+  btnAdition.addEventListener('click', operAdition);
+  elgality.addEventListener('click' , equalis);
+  soustraction.addEventListener('click', operSoustraction);
+  multiplication.addEventListener('click', operationMulti);
+  divisition.addEventListener('click', operationDivision);
+  btnReset.addEventListener('click', clearing);
+  btnSing.addEventListener('click' , plusOrsoustaction);
 
   mybtn.forEach(clickBtbn);
+
+  console.log(eval("2*4/2"));
 
 
   
