@@ -11,56 +11,90 @@ const soustraction = document.querySelector("#minus");
 const multiplication = document.querySelector("#times");
 const divisition = document.querySelector("#divideby");
 const btnReset = document.querySelector("#reset");
-const btnSing = document.querySelector(".secondary");
+const btnSing = document.querySelectorAll(".secondary");
 let restultat = "";
 
-
-
-  function addNumber0(e){
-    restultat += "7";
-    viewResultat();
-    e.preventDefault();
+  function addNumber0(){
+    if(restultat.length < 8){
+      restultat += "7";
+      viewResultat();
+    }
   };
   function addNumber1(){
-    restultat += "8";
-    viewResultat();
+    if(myInput.value.length < 8){
+      restultat += "8";
+      viewResultat();
+    }
   };
   function addNumber2(){
+    if(myInput.value.length < 8){
     restultat += "9";
     viewResultat();
+    }
   };
   function addNumber3(){
+    if(myInput.value.length < 8){
     restultat += "4";
     viewResultat();
+    }
   };
   function addNumber4(){
+    if(myInput.value.length < 8){
     restultat += "5";
     viewResultat();
+    }
   };
   function addNumber5(){
+    if(myInput.value.length < 8){
     restultat += "6";
     viewResultat();
+    }
   };
   function addNumber6(){
+    if(myInput.value.length < 8){
     restultat += "1";
     viewResultat();
+    }
   };
   function addNumber7(){
+    if(myInput.value.length < 8){
     restultat += "2";
     viewResultat();
+    }
   };
   function addNumber8(){
+    if(myInput.value.length < 8){
     restultat += "3";
     viewResultat();
+    }
   };
   function addNumber9(){
+    if(myInput.value !== "00" && myInput.value !== "000" && myInput.value !== "0000" && myInput.value !== "00000" && myInput.value !== "00000" &&
+    myInput.value !== "0.0" && myInput.value !== "0.0.0.0.0.0" && myInput.value !== "0.00" && myInput.value !== "000.000" && myInput.value !== ""){
     restultat += ".";
     viewResultat();
+    }
+    
   };
   function addNumber10(){
-    restultat += "0";
+      restultat += "0";
     viewResultat();
   };
+  function addPlusorSoustraction(){
+    restultat += "-";
+    vieuwCacul.innerHTML = "-";
+    myInput.value='';
+    const conversionTonumber = restultat;
+    vieuwCacul.innerHTML = conversionTonumber;
+    changerDirection();
+    viewResultat();
+  };
+  function pourcentage(e){
+    restultat += "/100";
+    viewResultat();
+    e.preventDefault();
+    equalis()
+  }
 
   function clickBtbn(btn){
     if(btn === mybtn[0]){
@@ -90,22 +124,37 @@ let restultat = "";
     }
   };
 
+  function btnClick1(btn1){
+    if(btn1 === btnSing[0]){
+      btn1.addEventListener('click' , clearing);
+    }else if(btn1 === btnSing){
+      btn1.addEventListener('click', addPlusorSoustraction);
+    }else if(btn1 === btnSing[1]){
+      btn1.addEventListener('click', addPlusorSoustraction);
+    }else if(btn1 === btnSing[2]){
+      btn1.addEventListener('click', pourcentage);
+    }
+  }
+
   function viewResultat(){
     const conversionTonumber = restultat;
     myInput.value = conversionTonumber;
   };
 
-  // function calcul(operation){
-  //   const lastCaractere = restultat[restultat.length - 1];
-  
-  // if (lastCaractere === '+' || lastCaractere === '-' || lastCaractere === '*' || lastCaractere === '/') {
-  //   restultat = restultat.slice(0, -1);
-  // }
-  
-  // restultat += operation;
-  // viewResultat();
-  // };
-
+  function changerDirection() {
+    if (myInput.dir === "ltr") {
+      myInput.dir = "rtl";
+    } else {
+      myInput.dir = "rtl"; 
+    }
+  }
+  function changerDirection1() {
+    if (myInput.dir === "rtl") {
+      myInput.dir = "ltr";
+    } else {
+      myInput.dir = "ltr"; 
+    }
+  }
   function operAdition(e){
     restultat += "+";
     vieuwCacul.innerHTML = "+";
@@ -113,6 +162,7 @@ let restultat = "";
     const conversionTonumber = restultat;
     vieuwCacul.innerHTML = conversionTonumber;
     e.preventDefault();
+    changerDirection1();
   };
 
     function operSoustraction(e){
@@ -122,6 +172,7 @@ let restultat = "";
       const conversionTonumber = restultat;
       vieuwCacul.innerHTML = conversionTonumber;
       e.preventDefault();
+      changerDirection1();
     };
   
   function equalis(e){
@@ -129,6 +180,7 @@ let restultat = "";
     myInput.value = valueInput;
     vieuwCacul.innerHTML = restultat + "=";
     e.preventDefault();
+    changerDirection1();
   };
 
   function operationMulti(e){
@@ -138,6 +190,7 @@ let restultat = "";
       const conversionTonumber = restultat;
       vieuwCacul.innerHTML = conversionTonumber;
       e.preventDefault();
+      changerDirection1();
   };
   function operationDivision(e){
     restultat += "/";
@@ -146,30 +199,25 @@ let restultat = "";
     const conversionTonumber = restultat;
     vieuwCacul.innerHTML = conversionTonumber;
     e.preventDefault();
+    changerDirection1();
   };
-  function plusOrsoustaction(e){
-    restultat += "-";
-    vieuwCacul.innerHTML = "-";
-    myInput.value='';
-    const conversionTonumber = restultat;
-    vieuwCacul.innerHTML = conversionTonumber;
-    e.preventDefault();
-  }
   function clearing(e){
     location.reload();
   };
-  
+
+  myInput.setAttribute('maxlength','8');
+   
   btnAdition.addEventListener('click', operAdition);
   elgality.addEventListener('click' , equalis);
   soustraction.addEventListener('click', operSoustraction);
   multiplication.addEventListener('click', operationMulti);
   divisition.addEventListener('click', operationDivision);
   btnReset.addEventListener('click', clearing);
-  btnSing.addEventListener('click' , plusOrsoustaction);
 
   mybtn.forEach(clickBtbn);
+  btnSing.forEach(btnClick1);
 
-  console.log(eval("2*4/2"));
+  
 
 
   
