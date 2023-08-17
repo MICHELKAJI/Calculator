@@ -77,8 +77,10 @@ let restultat = "";
     
   };
   function addNumber10(){
+    if(myInput.value !== "0"){
       restultat += "0";
-    viewResultat();
+       viewResultat();
+    }
   };
   function addPlusorSoustraction(){
     restultat += "-";
@@ -201,11 +203,12 @@ let restultat = "";
     e.preventDefault();
     changerDirection1();
   };
-  function clearing(e){
-    location.reload();
+  function clearing(){
+    restultat = " ";
+    vieuwCacul.innerHTML = "";
   };
 
-  myInput.setAttribute('maxlength','8');
+  myInput.readOnly = true;
    
   btnAdition.addEventListener('click', operAdition);
   elgality.addEventListener('click' , equalis);
@@ -213,6 +216,9 @@ let restultat = "";
   multiplication.addEventListener('click', operationMulti);
   divisition.addEventListener('click', operationDivision);
   btnReset.addEventListener('click', clearing);
+  myInput.addEventListener('keydown', function(e){
+    e.preventDefault()
+  });
 
   mybtn.forEach(clickBtbn);
   btnSing.forEach(btnClick1);
