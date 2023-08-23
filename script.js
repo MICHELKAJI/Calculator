@@ -1,4 +1,3 @@
-import { calculate } from './calculator.js';
 
 // TODO: Faire la manipulation du DOM dans ce fichier
 
@@ -15,55 +14,55 @@ const btnSing = document.querySelectorAll(".secondary");
 let restultat = "";
 
   function addNumber0(){
-    if(restultat.length < 8){
+    if(restultat.length < 12){
       restultat += "7";
       viewResultat();
     }
   };
   function addNumber1(){
-    if(myInput.value.length < 8){
+    if(myInput.value.length < 12){
       restultat += "8";
       viewResultat();
     }
   };
   function addNumber2(){
-    if(myInput.value.length < 8){
+    if(myInput.value.length < 12){
     restultat += "9";
     viewResultat();
     }
   };
   function addNumber3(){
-    if(myInput.value.length < 8){
+    if(myInput.value.length < 12){
     restultat += "4";
     viewResultat();
     }
   };
   function addNumber4(){
-    if(myInput.value.length < 8){
+    if(myInput.value.length < 12){
     restultat += "5";
     viewResultat();
     }
   };
   function addNumber5(){
-    if(myInput.value.length < 8){
+    if(myInput.value.length < 12){
     restultat += "6";
     viewResultat();
     }
   };
   function addNumber6(){
-    if(myInput.value.length < 8){
+    if(myInput.value.length < 12){
     restultat += "1";
     viewResultat();
     }
   };
   function addNumber7(){
-    if(myInput.value.length < 8){
+    if(myInput.value.length < 12){
     restultat += "2";
     viewResultat();
     }
   };
   function addNumber8(){
-    if(myInput.value.length < 8){
+    if(myInput.value.length < 12){
     restultat += "3";
     viewResultat();
     }
